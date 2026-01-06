@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Get a Quote | EliteWood Works</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="container" style="padding: 100px 20px; text-align: center;">
+        <h2 style="color:#d4a373;">Request a Free Quote</h2>
+        <p>Tell us about your dream furniture, and we will give you the best price.</p>
+
+        <form id="quoteForm" style="max-width: 500px; margin: 40px auto; text-align: left;">
+            <label>Furniture Type:</label>
+            <select id="furnitureType" style="width:100%; padding:10px; margin: 10px 0 20px 0;">
+                <option value="Kitchen Cabinet">Kitchen Cabinet</option>
+                <option value="Bed Frame">Bed Frame</option>
+                <option value="Dining Table">Dining Table</option>
+            </select>
+
+            <button type="submit" class="btn-main" style="width:100%;">Submit Request</button>
+        </form>
+        <p id="quoteStatus" style="margin-top: 20px; font-weight: bold;"></p>
+    </section>
+
+    <script>
+        document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('quoteStatus');
+            status.innerText = "Sending Request...";
+            status.style.color = "#d4a373";
+
+            const data = {
+                furnitureType: document.getElementById('furnitureType').value
+            };
+
+            try {
+                // Naya backend route '/api/quote' use kar rahe hain
+                const response = await fetch('http://localhost:5000/api/quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    status.style.color = "green";
+                    status.innerText = "✅ Quote Request Sent Successfully!";
+                } else {
+                    status.style.color = "red";
+                    status.innerText = "❌ Server Error! Try again.";
+                }
+            } catch (err) {
+                status.style.color = "red";
+                status.innerText = "❌ Backend Not Running! Terminal check karein.";
+            }
+        });
+    </script>
+</body>
+
+</html>
