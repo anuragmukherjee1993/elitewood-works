@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection string
-mongoose.connect('mongodb://127.0.0.1:27017/elitewood_db')
+mongoose.connect('mongodb+srv://admin:EliteWood2026@cluster0.sr86mps.mongodb.net/?appName=Cluster0')
     .then(() => console.log("🚀 BINGO: MongoDB se connection ban gaya!"))
     .catch(err => console.log("❌ Connection error:", err));
 
@@ -52,4 +52,5 @@ app.post('/api/quote', async (req, res) => {
 });
 
 // Server running on Port 5000
+
 app.listen(5000, () => console.log('✅ Backend Server is running on http://localhost:5000'));
