@@ -1,21 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path'); // Yeh line zaroori hai
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Static files load karne ke liye
+// Static files (HTML/CSS/Images) serve karne ke liye
 app.use(express.static(__dirname));
 
-// MongoDB Atlas
+// MongoDB Atlas Connection
 mongoose.connect('mongodb+srv://admin:EliteWood2026@cluster0.sr86mps.mongodb.net/?appName=Cluster0')
     .then(() => console.log("🚀 BINGO: MongoDB Atlas connected!"))
     .catch(err => console.log("❌ Connection error:", err));
 
-// Forms Logic
+// Forms Logic (Inquiry)
 const InquirySchema = new mongoose.Schema({ name: String, email: String, message: String, date: { type: Date, default: Date.now } });
 const Inquiry = mongoose.model('Inquiry', InquirySchema);
 app.post('/api/contact', async (req, res) => {
@@ -23,10 +23,11 @@ app.post('/api/contact', async (req, res) => {
     catch (err) { res.status(500).send(err.message); }
 });
 
-// --- YE WALI LINE DHAYAN SE DEKHO ---
+// FIX: '*' use karein taaki PathError na aaye
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Port configuration Render ke liye
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
