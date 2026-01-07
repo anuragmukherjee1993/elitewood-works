@@ -1,51 +1,188 @@
-<footer>
-    <div class="container footer-grid">
-        <div class="footer-col">
-            <h3 style="color: #d4a373;">EliteWood Works</h3>
-            <p>Premium custom furniture crafted with passion.</p>
-        </div>
-        <div class="footer-col">
-            <h3 style="color: #d4a373;">Quick Links</h3>
-            <ul style="list-style: none;">
-                <li><a href="services.html" style="color: #bbb; text-decoration: none;">Our Services</a></li>
-                <li><a href="about.html" style="color: #bbb; text-decoration: none;">About Us</a></li>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteWood Works</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2c1b0e;
+            color: #f4f4f4;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #1a1008;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d4a373;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #d4a373;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 60px 0;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-slider {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #120a05;
+            position: relative;
+        }
+
+        #sliderImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.8s;
+        }
+
+        .btn-main {
+            background: #d4a373;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #120a05;
+            padding: 50px 0;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 28px;
+            margin-right: 20px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #d4a373;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="container">
+        <a href="/" class="logo">EliteWood Works</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <section class="container hero">
+        <div class="hero-text">
+            <h1 style="font-size: 3rem; color: #d4a373;">Crafting Quality Wood Products</h1>
+            <p>Custom Furniture & Wood Solutions tailored to your unique needs.</p>
+            <a href="services.html" class="btn-main">Our Services</a>
         </div>
-        <div class="footer-col">
-            <h3 style="color: #d4a373;">Follow Us</h3>
-            <div class="social-links">
-                <a href="https://www.facebook.com/yourprofile" target="_blank"
-                    style="color: #fff; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/yourprofile" target="_blank"
-                    style="color: #fff; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@yourchannel" target="_blank" style="color: #fff;"><i
-                        class="fab fa-youtube"></i></a>
+        <div class="hero-slider">
+            <img id="sliderImage" src="images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg" alt="Slider">
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3 style="color: #d4a373; margin-bottom: 15px;">EliteWood Works</h3>
+                <p>Premium custom furniture crafted with passion.</p>
+            </div>
+            <div>
+                <h3 style="color: #d4a373; margin-bottom: 15px;">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <p style="text-align: center; margin-top: 40px; color: #666; border-top: 1px solid #222; padding-top: 20px;">© 2026
-        EliteWood Works. All Rights Reserved.</p>
-</footer>
+        <p style="text-align: center; margin-top: 30px; color: #666;">© 2026 EliteWood Works. All Rights Reserved.</p>
+    </footer>
 
-<script>
-    // Slider Logic with exact case-sensitive paths
-    const images = [
-        "images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
-        "images/WhatsApp%20Image%202026-01-04%20at%207.14.53%20PM.jpeg",
-        "images/WhatsApp%20Image%202026-01-04%20at%207.14.54%20PM%20(1).jpeg"
-    ];
-    let i = 0;
-    const imgElement = document.getElementById('sliderImage');
+    <script>
+        const images = [
+            "images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
+            "images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
+            "images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"
+        ];
+        let i = 0;
+        const img = document.getElementById('sliderImage');
+        setInterval(() => {
+            if (img) {
+                i = (i + 1) % images.length;
+                img.style.opacity = 0;
+                setTimeout(() => {
+                    img.src = images[i];
+                    img.style.opacity = 1;
+                }, 500);
+            }
+        }, 4000);
+    </script>
+</body>
 
-    function changeImage() {
-        if (imgElement) {
-            i = (i + 1) % images.length;
-            imgElement.style.opacity = 0;
-            setTimeout(() => {
-                imgElement.src = images[i];
-                imgElement.style.opacity = 1;
-            }, 800);
-        }
-    }
-    setInterval(changeImage, 4000);
-</script>
+</html>
