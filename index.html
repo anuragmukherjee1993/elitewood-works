@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Essential UI Fixes */
         #sliderImage {
             transition: opacity 0.8s ease-in-out;
         }
@@ -41,7 +40,6 @@
 </head>
 
 <body>
-
     <header>
         <div class="container nav-container">
             <div class="logo">EliteWood <span>Works</span></div>
@@ -70,26 +68,6 @@
         </div>
     </section>
 
-    <section class="projects">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Our Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg" alt="Kitchen">
-                    <div class="card-label">"Stunning Design & Superior Comfort!" — Mr. Arvind Sharma</div>
-                </div>
-                <div class="project-card">
-                    <img src="images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg" alt="Living Room">
-                    <div class="card-label">"Stunning Centerpiece!" — Anita Sharma</div>
-                </div>
-                <div class="project-card">
-                    <img src="images/WhatsApp Image 2026-01-04 at 7.14.54 PM.jpeg" alt="Custom Bed">
-                    <div class="card-label">"A Touch of Elegance in Every Detail!" — Kavita Iyer</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="contact-us" class="contact-form-section">
         <div class="container">
             <h2 style="text-align: center;">Send us an Inquiry</h2>
@@ -106,32 +84,6 @@
     </section>
 
     <footer>
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>EliteWood Works</h3>
-                <p style="color: #bbb; font-size: 14px; max-width: 300px;">Premium custom furniture crafted with
-                    passion. We bring your dream wood designs to life.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="services.html" style="color: #bbb; text-decoration: none;">Services</a></li>
-                    <li><a href="contact.html" style="color: #bbb; text-decoration: none;">Contact</a></li>
-                    <li><a href="quote.html" style="color: #bbb; text-decoration: none;">Get a Quote</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Follow Us</h3>
-                <div class="social-links" style="display: flex; gap: 15px; margin-top: 10px;">
-                    <a href="https://facebook.com" target="_blank" style="color: #fff; font-size: 24px;"><i
-                            class="fab fa-facebook"></i></a>
-                    <a href="https://instagram.com" target="_blank" style="color: #fff; font-size: 24px;"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com" target="_blank" style="color: #fff; font-size: 24px;"><i
-                            class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
         <p class="copyright">© 2026 EliteWood Works. All Rights Reserved.</p>
     </footer>
 
@@ -146,14 +98,14 @@
             setTimeout(() => { sliderImg.src = images[currentIndex]; sliderImg.style.opacity = 1; }, 400);
         }, 3000);
 
-        // Form Logic
+        // Form Logic - Fixed URL for Render
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const responseMsg = document.getElementById('responseMessage');
             responseMsg.innerText = "Sending...";
             const data = { name: document.getElementById('name').value, email: document.getElementById('email').value, message: document.getElementById('message').value };
             try {
-                const response = await fetch('http://localhost:5000/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
                 if (response.ok) {
                     responseMsg.style.color = "green";
                     responseMsg.innerText = "✅ Success! Saved in MongoDB.";
@@ -161,7 +113,7 @@
                 } else { throw new Error(); }
             } catch (err) {
                 responseMsg.style.color = "red";
-                responseMsg.innerText = "❌ Backend Not Running! Check 'node script.js'.";
+                responseMsg.innerText = "❌ Error sending inquiry.";
             }
         });
     </script>
