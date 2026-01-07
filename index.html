@@ -7,36 +7,6 @@
     <title>EliteWood Works | Premium Custom Furniture</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        #sliderImage {
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        .contact-form-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-
-        .contact-form-container input,
-        .contact-form-container textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            color: #333;
-        }
-
-        #responseMessage {
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -60,62 +30,68 @@
             <div class="hero-text">
                 <h1>Crafting Quality Wood Products</h1>
                 <p>Custom Furniture & Wood Solutions tailored to your needs.</p>
-                <a href="services.html#video-intro" class="btn-main">Learn More</a>
+                <a href="#contact-us" class="btn-main">Learn More</a>
             </div>
             <div class="hero-slider">
-                <img id="sliderImage" src="images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg" alt="Furniture Slider">
-            </div>
-        </div>
-    </section>
-
-    <section id="contact-us" class="contact-form-section">
-        <div class="container">
-            <h2 style="text-align: center;">Send us an Inquiry</h2>
-            <div class="contact-form-container">
-                <form id="contactForm">
-                    <input type="text" id="name" placeholder="Full Name" required>
-                    <input type="email" id="email" placeholder="Email Address" required>
-                    <textarea id="message" placeholder="Describe your project" rows="5" required></textarea>
-                    <button type="submit" class="btn-main" style="width: 100%;">Submit Request</button>
-                </form>
-                <p id="responseMessage"></p>
+                <img id="sliderImage" src="images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg" alt="Furniture Slider"
+                    style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease-in-out;">
             </div>
         </div>
     </section>
 
     <footer>
-        <p class="copyright">© 2026 EliteWood Works. All Rights Reserved.</p>
+        <div class="container footer-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            <div class="footer-col">
+                <h3>EliteWood Works</h3>
+                <p>Premium custom furniture crafted with passion. We bring your dream wood designs to life.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none;">
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="quote.html">Get a Quote</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow Us</h3>
+                <div class="social-links" style="display: flex; gap: 15px;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright"
+            style="text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">© 2026
+            EliteWood Works. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Slider Logic
-        const images = ["images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg", "images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg", "images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"];
+        // SLIDER LOGIC FIXED: Aapki images ke exact naam yahan hone chahiye
+        const images = [
+            "images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
+            "images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
+            "images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"
+        ];
+
         let currentIndex = 0;
         const sliderImg = document.getElementById('sliderImage');
-        setInterval(() => {
+
+        function changeImage() {
             currentIndex = (currentIndex + 1) % images.length;
             sliderImg.style.opacity = 0;
-            setTimeout(() => { sliderImg.src = images[currentIndex]; sliderImg.style.opacity = 1; }, 400);
-        }, 3000);
+            setTimeout(() => {
+                sliderImg.src = images[currentIndex];
+                sliderImg.style.opacity = 1;
+            }, 400);
+        }
 
-        // Form Logic - Fixed URL for Render
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const responseMsg = document.getElementById('responseMessage');
-            responseMsg.innerText = "Sending...";
-            const data = { name: document.getElementById('name').value, email: document.getElementById('email').value, message: document.getElementById('message').value };
-            try {
-                const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-                if (response.ok) {
-                    responseMsg.style.color = "green";
-                    responseMsg.innerText = "✅ Success! Saved in MongoDB.";
-                    document.getElementById('contactForm').reset();
-                } else { throw new Error(); }
-            } catch (err) {
-                responseMsg.style.color = "red";
-                responseMsg.innerText = "❌ Error sending inquiry.";
-            }
-        });
+        // Check if images exist and then start slider
+        if (sliderImg) {
+            setInterval(changeImage, 3000);
+        }
     </script>
 </body>
 
