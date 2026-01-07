@@ -38,7 +38,7 @@
     </section>
 
     <script>
-        // Exact filenames according to your VS Code structure
+        // Exact filenames from your VS Code structure
         const images = [
             "Images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
             "Images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
@@ -46,19 +46,18 @@
         ];
 
         let i = 0;
-        const sliderImg = document.getElementById('sliderImage');
-
-        function rotateImages() {
-            if (sliderImg) {
+        const imgElement = document.getElementById('sliderImage');
+        if (imgElement) {
+            imgElement.src = images[0];
+            setInterval(() => {
                 i = (i + 1) % images.length;
-                sliderImg.style.opacity = 0;
+                imgElement.style.opacity = 0;
                 setTimeout(() => {
-                    sliderImg.src = images[i];
-                    sliderImg.style.opacity = 1;
+                    imgElement.src = images[i];
+                    imgElement.style.opacity = 1;
                 }, 500);
-            }
+            }, 4000);
         }
-        setInterval(rotateImages, 4000);
     </script>
 </body>
 
