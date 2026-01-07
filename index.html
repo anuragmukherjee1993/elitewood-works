@@ -33,15 +33,14 @@
                 <a href="#contact-us" class="btn-main">Learn More</a>
             </div>
             <div class="hero-slider">
-                <img id="sliderImage" src="images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg" alt="Furniture Slider"
-                    style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.8s ease;">
+                <img id="sliderImage" src="images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg" alt="Furniture Slider">
             </div>
         </div>
     </section>
 
     <section id="contact-us" class="contact-form-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 20px;">Send us an Inquiry</h2>
+            <h2 class="section-title" style="text-align: center;">Send us an Inquiry</h2>
             <div class="contact-form-container">
                 <form id="contactForm">
                     <input type="text" id="name" placeholder="Full Name" required>
@@ -49,49 +48,44 @@
                     <textarea id="message" placeholder="Describe your project" rows="5" required></textarea>
                     <button type="submit" class="btn-main" style="width: 100%;">Submit Request</button>
                 </form>
-                <p id="responseMessage" style="text-align: center; margin-top: 15px; font-weight: bold;"></p>
+                <p id="responseMessage"></p>
             </div>
         </div>
     </section>
 
-    <footer style="background: #120a05; padding: 60px 0 20px 0; border-top: 1px solid #333; color: #fff;">
-        <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
-            <div style="flex: 1; min-width: 250px;">
-                <h3 style="color: #d4a373; margin-bottom: 20px;">EliteWood Works</h3>
-                <p style="color: #bbb;">Premium custom furniture crafted with passion.</p>
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>EliteWood Works</h3>
+                <p>Premium custom furniture crafted with passion. We bring your dream wood designs to life.</p>
             </div>
-            <div style="flex: 1; min-width: 150px;">
-                <h3 style="color: #d4a373; margin-bottom: 20px;">Quick Links</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><a href="services.html"
-                            style="color: #bbb; text-decoration: none;">Services</a></li>
-                    <li style="margin-bottom: 10px;"><a href="contact.html"
-                            style="color: #bbb; text-decoration: none;">Contact</a></li>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-            <div style="flex: 1; min-width: 150px;">
-                <h3 style="color: #d4a373; margin-bottom: 20px;">Follow Us</h3>
-                <div style="display: flex; gap: 20px; font-size: 24px;">
-                    <a href="#" style="color: #fff;"><i class="fab fa-facebook"></i></a>
-                    <a href="#" style="color: #fff;"><i class="fab fa-instagram"></i></a>
+            <div class="footer-col">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #222; color: #666;">©
-            2026 EliteWood Works. All Rights Reserved.</p>
+        <p class="copyright">© 2026 EliteWood Works. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // SLIDER LOGIC - FIXED ARRAY
         const images = [
             "images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
             "images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
             "images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"
         ];
-
         let currentIndex = 0;
         const sliderImg = document.getElementById('sliderImage');
-
         if (sliderImg) {
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
@@ -102,25 +96,6 @@
                 }, 400);
             }, 3000);
         }
-
-        // FORM LOGIC
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const responseMsg = document.getElementById('responseMessage');
-            responseMsg.innerText = "Sending...";
-            const data = { name: document.getElementById('name').value, email: document.getElementById('email').value, message: document.getElementById('message').value };
-            try {
-                const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-                if (response.ok) {
-                    responseMsg.style.color = "green";
-                    responseMsg.innerText = "✅ Success! Sent to Team.";
-                    document.getElementById('contactForm').reset();
-                } else { throw new Error(); }
-            } catch (err) {
-                responseMsg.style.color = "red";
-                responseMsg.innerText = "❌ Error sending message.";
-            }
-        });
     </script>
 </body>
 
