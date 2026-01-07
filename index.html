@@ -26,30 +26,23 @@
 </div>
 
 <script>
-    // Exact paths from your VS Code
     const images = [
-        "Images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
-        "Images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
+        "Images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg", // 'I' capital hai
+        "Images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg", // .jpeg extension
         "Images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"
     ];
 
     let i = 0;
-    const imgElement = document.getElementById('sliderImage');
-
-    function startSlider() {
-        if (imgElement) {
-            // First image load check
-            imgElement.src = images[0];
-
-            setInterval(() => {
-                i = (i + 1) % images.length;
-                imgElement.style.opacity = 0;
-                setTimeout(() => {
-                    imgElement.src = images[i];
-                    imgElement.style.opacity = 1;
-                }, 500);
-            }, 4000);
-        }
+    const img = document.getElementById('sliderImage');
+    if (img) {
+        img.src = images[0]; // Pehli image load karein
+        setInterval(() => {
+            i = (i + 1) % images.length;
+            img.style.opacity = 0;
+            setTimeout(() => {
+                img.src = images[i];
+                img.style.opacity = 1;
+            }, 500);
+        }, 4000);
     }
-    window.onload = startSlider;
 </script>
