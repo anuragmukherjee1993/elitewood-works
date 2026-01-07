@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Static files (HTML/CSS/Images) serve karne ke liye
+// Static files (HTML/CSS) ke liye
 app.use(express.static(__dirname));
 
 // MongoDB Atlas Connection
@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://admin:EliteWood2026@cluster0.sr86mps.mongodb.net
     .then(() => console.log("🚀 BINGO: MongoDB Atlas connected!"))
     .catch(err => console.log("❌ Connection error:", err));
 
-// Forms Logic (Inquiry)
+// Form Logic
 const InquirySchema = new mongoose.Schema({ name: String, email: String, message: String, date: { type: Date, default: Date.now } });
 const Inquiry = mongoose.model('Inquiry', InquirySchema);
 app.post('/api/contact', async (req, res) => {
@@ -23,11 +23,10 @@ app.post('/api/contact', async (req, res) => {
     catch (err) { res.status(500).send(err.message); }
 });
 
-// FIX: '*' use karein taaki PathError na aaye
+// --- FIX WALI LINE ---
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Port configuration Render ke liye
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
