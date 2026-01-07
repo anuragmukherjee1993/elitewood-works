@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Static files (CSS/Images) ko enable karna
+// Important: Static files serve karne ke liye
 app.use(express.static(__dirname));
 
-// Saare HTML pages ke liye routing
+// Routing for pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/services.html', (req, res) => res.sendFile(path.join(__dirname, 'services.html')));
 app.get('/about.html', (req, res) => res.sendFile(path.join(__dirname, 'about.html')));
