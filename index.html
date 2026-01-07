@@ -26,24 +26,30 @@
 </div>
 
 <script>
-    // Exact matching your VS Code folder: "Images" with capital 'I'
-    const imageList = [
+    // Exact paths from your VS Code
+    const images = [
         "Images/dominik-scythe-v8vz-Roj8zo-unsplash.jpg",
         "Images/WhatsApp Image 2026-01-04 at 7.14.53 PM.jpeg",
         "Images/WhatsApp Image 2026-01-04 at 7.14.54 PM (1).jpeg"
     ];
 
-    let count = 0;
-    const sliderImg = document.getElementById('sliderImage');
+    let i = 0;
+    const imgElement = document.getElementById('sliderImage');
 
-    setInterval(() => {
-        if (sliderImg) {
-            count = (count + 1) % imageList.length;
-            sliderImg.style.opacity = 0.5; // Smooth transition
-            setTimeout(() => {
-                sliderImg.src = imageList[count];
-                sliderImg.style.opacity = 1;
-            }, 500);
+    function startSlider() {
+        if (imgElement) {
+            // First image load check
+            imgElement.src = images[0];
+
+            setInterval(() => {
+                i = (i + 1) % images.length;
+                imgElement.style.opacity = 0;
+                setTimeout(() => {
+                    imgElement.src = images[i];
+                    imgElement.style.opacity = 1;
+                }, 500);
+            }, 4000);
         }
-    }, 4000);
+    }
+    window.onload = startSlider;
 </script>
