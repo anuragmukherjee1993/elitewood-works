@@ -5,54 +5,37 @@ const path = require('path');
 
 const app = express();
 
-// Middleware
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// 1. Static Files Middleware (Sabse pehle rakho)
-// Isse CSS, Images aur JS files automatically mil jayengi
+// 1. Static Files (Sabse pehle)
 app.use(express.static(__dirname));
 
-// 2. MongoDB Atlas Connection
-const mongoURI = 'mongodb+srv://admin:EliteWood2026@cluster0.sr86mps.mongodb.net/?appName=Cluster0';
-mongoose.connect(mongoURI)
-    .then(() => console.log("🚀 BINGO: MongoDB Atlas connected!"))
-    .catch(err => console.log("❌ Connection error:", err));
+// 2. Database Connection
+mongoose.connect('mongodb+srv://admin:EliteWood2026@cluster0.sr86mps.mongodb.net/?appName=Cluster0')
+    .then(() => console.log("🚀 MongoDB Connected!"))
+    .catch(err => console.log("❌ DB Error:", err));
 
-// --- CONTACT FORM LOGIC ---
+// 3. API Route
 const InquirySchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    message: String,
-    date: { type: Date, default: Date.now }
+    name: String, email: String, message: String, date: { type: Date, default: Date.now }
 });
-
 const Inquiry = mongoose.model('Inquiry', InquirySchema);
 
-// API Route for Form Submission
 app.post('/api/contact', async (req, res) => {
     try {
         const newInquiry = new Inquiry(req.body);
         await newInquiry.save();
-        res.status(200).send({ message: 'Success! Inquiry saved.' });
-    } catch (err) {
-        console.error("Form Error:", err);
-        res.status(500).send({ error: 'Failed to save inquiry' });
-    }
+        res.status(200).send({ message: 'Saved!' });
+    } catch (err) { res.status(500).send(err.message); }
 });
 
-// 3. Serve index.html for the root route
+// 4. Root Route (Direct Send File - No regex)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// 4. Catch-all route (Optional but helpful for single page feel)
-// Agar koi galat URL daale toh home par bhej de
-app.get('*', (req, res, next) => {
-    if (req.url.startsWith('/api')) return next(); // API routes ko disturb na kare
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Port configuration
+// Port
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Running on ${PORT}`));
